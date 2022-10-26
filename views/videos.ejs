@@ -1,0 +1,115 @@
+<%- include('partials/head', {'title': title}) %>
+<style>
+    .column {
+        float: left;
+        width: 33.33%;
+      }
+      
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+</style>
+
+
+
+  <% 
+var isdisabled="disabled";
+var buyString = "Login to watch"
+if(locals.user) {
+    isdisabled="";
+    buyString = "";
+}
+%>
+<div class="container">
+    <div class="columns is-multiline">
+
+        <% 
+        videos.forEach((item,index) => { 
+        %>
+        <div class="column is-one-third">
+        <a href="/item/<%=item.id %>">
+            <div class="prod">
+                    <div class="card">
+                              <td>
+                                <div width="700" height="500">
+                                  <iframe src="https://www.youtube.com/embed/<%=item.link %> " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe>
+                              </div>
+                              </td>
+                              
+                            
+                            <div class="card-content">         
+                              <div class="content">
+                                <h3 class="title"><%=item.name %></h3>
+                              <!-- <a href="login" class="button is-block is-success" <%=isdisabled%> >Watch Now</a>  -->
+                                <code>
+                                <% if(!locals.user) { %>
+                                <%=buyString %>
+                                <% } else{ %>
+                                <%=item.title %> 
+                                <% } %>
+                                </code>  
+                              </div>
+                            </div>
+                     </div>
+            </div>
+        </a>
+        </div>
+        <%  }); %>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<!-- 
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+        
+        <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/8tIUTAahr5g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NjIU8lSNTy4" title="YouTube video player" frameborder="2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="row">
+    <div class="column">
+        <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/8tIUTAahr5g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+    </div>
+    <div class="column">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/zNxi2s36tS0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="column">
+
+        <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NjIU8lSNTy4" title="YouTube video player" frameborder="2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+  </div> -->
+
+
+
+
+  <%- include('partials/foot') %>

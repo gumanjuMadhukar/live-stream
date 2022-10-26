@@ -1,0 +1,107 @@
+<%- include('partials/head', {'title': title}) %>
+<style>
+html,body {
+  /* font-family: 'Open Sans', serif; */
+  font-size: 14px;
+  font-weight: 300;
+}
+body {
+    background: #011120;
+}
+.hero-body {
+    padding-top: 0;
+}
+.mycontainer {
+    margin-top: -20px;
+}
+.hero.is-success {
+  background: #051c33;
+}
+.hero .nav, .hero.is-success .nav {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.box {
+  margin-top: 1rem;
+}
+input {
+  font-weight: 300;
+}
+p {
+  font-weight: 700;
+}
+p.subtitle {
+  padding-top: 1rem;
+}
+</style>
+<% 
+var animClass = ""
+if(typeof failed != 'undefined') 
+    animClass = "animated shake"
+%>
+<section class="hero is-success is-fullheight">
+    <div class="hero-body">
+        <div class="container is-fullhd has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <h3 class="title has-text-grey"><%=title %></h3>
+                <p class="subtitle has-text-grey">User Sign up</p>
+                <div class="box <%=animClass %>">
+                    <form action="/register" method="post">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" name="uname" type="text" placeholder="Username" autofocus="" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" name="firstname" type="text" placeholder="firstname" autofocus="" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" name="lastname" type="text" placeholder="lastname" autofocus="" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" name="pwd" type="password" placeholder="Your Password" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                              <input class="input is-large" name="confirmpwd" type="password" placeholder="Re-Type Password" required>
+                          </div>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                            <input class="input is-large" name="email" type="text" placeholder="Email : eg: abc@mail.com" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                      <div class="control">
+                          <input class="input is-large" name="gender" type="text" placeholder="male/female" required>
+                      </div>
+                  </div>
+                  <div class="field">
+                    <div class="control">
+                        <input class="input is-large" name="nationality" type="text" placeholder="Country:" required >
+                    </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                      <input class="input is-large" name="contact" type="text" placeholder="Contact:" required>
+                  </div>
+              </div>
+              
+                        <button class="button is-block is-info is-large is-fullwidth">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/foot') %>

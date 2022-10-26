@@ -1,0 +1,44 @@
+<%- include('partials/head', {'title': "Orders"}) %>
+<div class="table-data">
+<h2>Display Data using Node.js & MySQL</h2>
+    <table border="1">
+        <tr>
+            <th>S.N</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Gender</th>
+            <th>Nationality</th>
+            <th>Contact</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.username %></td>
+            <td><%=data.email %></td>
+            <td><%=data.firstname %></td>
+            <td><%=data.lastname %></td>
+            <td><%=data.gender %></td>
+            <td><%=data.nationality %></td>
+            <td><%=data.contact %></td>
+            <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
+            <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+
+    <%- include('partials/foot') %>

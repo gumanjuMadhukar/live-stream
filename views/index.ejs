@@ -1,0 +1,119 @@
+<%- include('partials/head', {'title': title}) %>
+
+<h2 class="title is-2"><%= title %></h2>
+
+  
+  <!--  -->
+    <!-- live stream -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Create two unequal columns that floats next to each other */
+    .column {
+      float: left;
+      padding: 10px;
+      height: 300px; /* Should be removed. Only for demonstration */
+    }
+    
+    .left {
+      width: 70%;
+    }
+    
+    .right {
+      width: 30%;
+    }
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+    </head>
+    
+    
+    
+    <section>
+
+    
+    <div class="row">
+      <div class="column left" style="background-color:#aaa;">
+        <video id="videoPlayer" width="1200px" height="500px" controls autoplay="no" border="2"> 
+          <source src="/video", type="video/mp4">
+        </video>
+      </div>
+      <div class="column right" style="background-color:#bbb;">
+        <div id="wrapper">
+          <div id="menu">
+              <p class="welcome">Welcome, <b></b></p>
+              <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+          </div>
+
+          <div id="chatbox"></div>
+
+          <form name="message" action="#">
+              <input name="usermsg" type="text" id="usermsg" />
+              <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
+          </form>
+      </div>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript">
+          // jQuery Document
+          $(document).ready(function () {});
+      </script>
+      </div>
+    </div>
+
+  </section>
+
+    <!-- <div class="row ">
+       
+      <div class="column">
+        <video id="videoPlayer" width="700px" height="500px" controls autoplay="no" border="2"> 
+          <source src="/video", type="video/mp4">
+        </video>
+      </div>
+      
+        
+      </div> -->
+
+
+ 
+      
+    
+    <!-- youtube imbeded -->
+    <!-- <div>
+      <iframe width="900px" height="500px" src="https://www.youtube.com/embed/zNxi2s36tS0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+     -->
+    <!-- webcam -->
+<br>
+<br>
+    <video id="vid" autoplay="off"></video>
+    
+    <script>
+      
+      navigator.mediaDevices.getUserMedia({
+        video: {
+          width: 1280,
+          height: 720
+        }
+      })
+      .then(stream => {
+        document.getElementById("vid").srcObject = stream;
+      })
+      
+    </script>
+
+
+
+    
+    
+    <%- include('products', {'products': products}) %>
+    
+    <%- include('partials/foot') %>
+    

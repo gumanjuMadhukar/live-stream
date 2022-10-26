@@ -1,0 +1,100 @@
+<%- include('partials/head', {title:'title'}) %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+  width: 70%;
+}
+
+.right {
+  width: 30%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+</style>
+
+
+
+
+<h2 class="title is-2"> User Profile</p> </h2>
+
+<form action="<%-baseUrl %>/edit-profile/<%-users.id %>" method="post" style="max-width: 500px;" enctype="multipart/form-data">
+    <div class="column left">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+            <input class="input" name="username" type="text" placeholder="User Name" value="<%-users.username %>">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+            <input class="input" name="email" placeholder="Email"  value="<%-users.email %>">
+        </div>
+    </div>
+
+    <div class="field">
+            <label class="label">Firstname</label>
+            <div class="control">
+                <input class="input" name="firstname" placeholder="Firstname" value="<%-users.firstname %>">
+            </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Lastname</label>
+      <div class="control">
+          <input class="input" name="lastname" placeholder="lastname" value="<%-users.lastname %>">
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="column right">
+    <div class="field">
+      <label class="label">Gender</label>
+      <div class="control">
+          <input class="input" name="gender" placeholder="gender" value="<%-users.gender %>">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Nationality</label>
+      <div class="control">
+          <input class="input" name="Nationality" placeholder="Nationality" value="<%-users.Nationality %>">
+      </div>
+    </div>
+
+    <div class="field">
+            <label class="label">Contact</label>
+            <div class="control">
+                <input class="input" name="Contact" type="number" value="<%-users.Contact %>" placeholder="Contact">
+            </div>
+    </div>
+
+  </div>
+    
+    <br>
+  </form>
+    <div class="field">
+            <div class="control">
+              <button class="button is-link">Submit</button>
+            </div>
+    </div>
+

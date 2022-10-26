@@ -1,0 +1,89 @@
+<%- include('partials/head',{page: "manage-video"}) %>
+
+<h2 class="title is-2">All Videos</h2>
+<div id="app">
+<table class="table is-striped is-fullwidth" >
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Video</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Link</th>
+            
+            <th>description</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+    <% videos.forEach((item,index)=> { %>
+
+          <tr>
+              <td><%-item.id %></td>
+                <td>
+                  <figure >
+                      <img src="<%-baseUrl %>/uploads/<%-item.picture %>" alt="<%-item.name %>">
+                      <iframe src="https://www.youtube.com/embed/<%=item.link %>" title="<%-item.title %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                  </figure>
+            </td>
+              <td><%-item.category %></td>
+              <td><%-item.title %></td>
+              <td><%-item.link %></td>
+              <td><%-item.description %></td>
+              <td><%-item.stock %> <button class="button" @click="editdescription(<%-item.id %>,'d<%-index %>')">Edit</button></td>
+              <td>
+                <a href="<%-baseUrl %>/admin/edit/<%-item.id %>" class="button">Edit Video</a>
+              </td>
+          </tr>
+    <% }) %>
+        </tbody>
+      </table>
+    </div>
+      <script src="<%-baseUrl %>/js/vue.js"></script>
+      <script src="<%-baseUrl %>/js/sweetalert2.all.min.js"></script>
+      <script>
+      new Vue({
+          el : "#app",
+          data : 
+          {
+            <% videos.forEach((item,index)=> { %>
+                d<%-index %> : <%-item.stock %>,
+            <% }) %>
+          },
+          methods : {
+            editstock: function(id,did) {
+                swal({
+                    title: 'Enter new stock details',
+                    input: 'text',
+                    inputValue : this[did],
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Update',
+                    showLoaderOnConfirm: true,
+                    preConfirm: (newval) => {
+                        return fetch(`<%-baseUrl%>/stock/update/${id}/${newval}`)
+                        .then(response => {
+                            if (!response.ok) {
+                            throw new Error(response.statusText)
+                            }
+                            return response.text()
+                        })
+                        .catch(error => {
+                            swal.showValidationMessage(
+                            `Request failed: ${error}`
+                            )
+                        })
+                    },
+                    allowOutsideClick: () => !swal.isLoading()
+                    }).then((result) => {
+                    console.log(result)
+                    window.location.reload();
+                    })
+          }
+        }
+      })
+      </script>
+<%- include('partials/foot') %>

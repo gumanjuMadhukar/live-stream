@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%=title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="<%=baseUrl %>/css/bulma.min.css" />
+  <link rel="stylesheet" href="<%=baseUrl %>/css/animate.css" />
+  <link rel="stylesheet" href="<%=baseUrl %>/css/style.css" />
+  <style>
+    .mycontainer {
+      margin-top: 50px;
+    }
+    body,html {
+      background: #F2F6FA;
+      min-height: 100%;
+    }
+   
+    li {
+      float: left;
+    }
+    
+    li a {
+      display: block;
+      color: #666;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+  
+    ul {
+      position: -webkit-sticky; /* Safari */
+      position: sticky;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="<%=baseUrl %>">
+          <img src="<%-baseUrl %>/imgs/logo.png" >
+        </a>
+        
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      
+      <div class="navbar-start">
+        <% if(locals.user){ %>
+          <div class="container-fluid">
+            <a class="navbar-brand" href="<%=baseUrl %>">Fun Olympic 2022</a>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="<%=baseUrl %>">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<%=baseUrl %>/news">News</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="/videos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Videos
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+                </li>
+              </ul>
+              <!-- <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form> -->
+            </div>
+          </div>
+          <% }else { %>
+            
+            <% } %>
+            
+            
+          </div>
+          
+          
+          <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <% if(locals.user){ %>
+                <a class="navbar-link">
+                 
+                  <%= user.username %>
+                </a>
+                
+                <div class="navbar-dropdown">
+                  <a href="<%=baseUrl %>/profile/<%=user.id%>" class="navbar-item">
+                    Profile
+                  </a>
+                  <hr class="navbar-divider">
+                  <a href="<%=baseUrl %>/logout" class="navbar-item">
+                    Sign out
+                  </a>
+                
+
+                  <% }else { %>
+
+                 
+                    <a class="navbar-link">
+                      Login / Register
+                    </a>
+                    
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item" href="<%=baseUrl %>/login">
+                        Login
+                      </a>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item" href="<%=baseUrl %>/register">
+                        Register
+                      </a>
+                      <% } %>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+          
+          <div class="container mycontainer">
